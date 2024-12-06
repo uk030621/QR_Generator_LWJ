@@ -1,0 +1,88 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+
+export default function Home() {
+  const [inputText, setInputText] = useState("");
+  const [qrCodeUrl, setQrCodeUrl] = useState("");
+
+  const generateQrCode = async () => {
+    if (!inputText) return alert("Please enter text to generate QR Code!");
+
+    // Fetch the QR code URL from the API route
+    const response = await fetch(
+      `/api/qrcode?text=${encodeURIComponent(inputText)}`
+    );
+    if (response.ok) {
+      const { qrCodeUrl } = await response.json();
+      setQrCodeUrl(qrCodeUrl);
+    } else {
+      alert("Failed to generate QR Code. Please try again.");
+    }
+  };
+
+  const clearAll = () => {
+    setInputText("");
+    setQrCodeUrl("");
+  };
+
+  return (
+    <main className="flex flex-col items-center justify-start min-h-screen bg-gray-100 px-4">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6 mt-4 text-center">
+        QR Code Generator
+      </h1>
+      <input
+        type="text"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        placeholder="Enter text or URL"
+        className="text-base w-full max-w-md p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+      />
+      <div className="flex gap-3">
+        <button
+          onClick={generateQrCode}
+          className="text-sm px-6 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition"
+        >
+          Generate QR Code
+        </button>
+
+        <button
+          onClick={clearAll}
+          className="text-sm px-6 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition"
+        >
+          Reset
+        </button>
+      </div>
+
+      {qrCodeUrl && (
+        <div className="mt-8 flex flex-col items-center">
+          <div className="relative w-48 h-48">
+            <Image
+              src={qrCodeUrl}
+              alt="Generated QR Code"
+              fill
+              className="object-contain"
+            />
+          </div>
+          <a
+            href={qrCodeUrl}
+            download="qrcode.png"
+            className="mt-4 text-blue-500 hover:underline"
+          >
+            Download QR Code
+          </a>
+        </div>
+      )}
+      <footer className="mt-8 text-xs">
+        <div className="text-center">
+          <p className="flex flex-col gap-1">
+            &copy; {new Date().getFullYear()} LWJ Quick Response Generator.
+            <br />
+            <span>All rights reserved.</span>
+          </p>
+        </div>
+      </footer>
+    </main>
+  );
+}

@@ -7,6 +7,15 @@ export default function Home() {
   const [inputText, setInputText] = useState("");
   const [qrCodeUrl, setQrCodeUrl] = useState("");
 
+  const isValidUrl = (string) => {
+    try {
+      new URL(string);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
   const generateQrCode = async () => {
     if (!inputText) return alert("Please enter text to generate QR Code!");
 
@@ -25,6 +34,16 @@ export default function Home() {
   const clearAll = () => {
     setInputText("");
     setQrCodeUrl("");
+  };
+
+  // Determine the link target based on input
+  const getLinkTarget = () => {
+    if (isValidUrl(inputText)) {
+      return inputText; // Direct link for valid URLs
+    }
+    // Construct a search query for text input
+    const searchBaseUrl = "https://www.google.com/search?q=";
+    return `${searchBaseUrl}${encodeURIComponent(inputText)}`;
   };
 
   return (
@@ -57,14 +76,20 @@ export default function Home() {
 
       {qrCodeUrl && (
         <div className="mt-8 flex flex-col items-center">
-          <div className="relative w-48 h-48">
+          {/* Make QR code clickable */}
+          <a
+            href={getLinkTarget()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative w-48 h-48"
+          >
             <Image
               src={qrCodeUrl}
               alt="Generated QR Code"
               fill
-              className="object-contain"
+              className="object-contain cursor-pointer"
             />
-          </div>
+          </a>
           <a
             href={qrCodeUrl}
             download="qrcode.png"

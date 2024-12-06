@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
@@ -99,6 +100,9 @@ export default function Home() {
           </a>
         </div>
       )}
+      <Link href="/news" className="text-gray-700 mt-8">
+        News
+      </Link>
       <footer className="mt-8 text-xs">
         <div className="text-center">
           <p className="flex flex-col gap-1">

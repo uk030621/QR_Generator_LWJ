@@ -1,3 +1,4 @@
+//app/page.js
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
@@ -105,7 +106,7 @@ export default function NewsPage() {
           >
             <option value="">All Sections</option>
             <option value="technology">Technology</option>
-            <option value="sports">Sports</option>
+            <option value="sport">Sport</option>
             <option value="world">World</option>
             <option value="business">Business</option>
             <option value="culture">Culture</option>

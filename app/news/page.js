@@ -44,7 +44,7 @@ export default function NewsPage() {
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       setSearchTerm(keyword); // Update searchTerm after a delay
-    }, 300); // 300ms debounce delay
+    }, 1000); // 300ms debounce delay
 
     return () => clearTimeout(delayDebounce); // Cleanup timeout on unmount or keyword change
   }, [keyword]);
@@ -84,7 +84,7 @@ export default function NewsPage() {
   return (
     <main className="min-h-screen bg-gray-100 py-8 px-4">
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">
-        World News Application
+        World News App
       </h1>
       <div className="flex flex-col text-center mb-4">
         <Link href="/">Back</Link>

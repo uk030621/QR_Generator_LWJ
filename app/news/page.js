@@ -9,6 +9,7 @@ export default function NewsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [keyword, setKeyword] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); // Separate state for debounced input
   const [section, setSection] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [page, setPage] = useState(1);
@@ -18,7 +19,7 @@ export default function NewsPage() {
     setError("");
 
     const queryParams = new URLSearchParams({
-      ...(keyword && { q: keyword }),
+      ...(searchTerm && { q: searchTerm }),
       ...(section && { section }),
       ...(fromDate && { "from-date": fromDate }),
       page,
@@ -38,7 +39,15 @@ export default function NewsPage() {
     } finally {
       setLoading(false);
     }
-  }, [keyword, section, fromDate, page]);
+  }, [searchTerm, section, fromDate, page]);
+
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      setSearchTerm(keyword); // Update searchTerm after a delay
+    }, 300); // 300ms debounce delay
+
+    return () => clearTimeout(delayDebounce); // Cleanup timeout on unmount or keyword change
+  }, [keyword]);
 
   useEffect(() => {
     fetchNews();
@@ -50,6 +59,7 @@ export default function NewsPage() {
 
   const handleClearFilters = () => {
     setKeyword("");
+    setSearchTerm("");
     setSection("");
     setFromDate("");
     setPage(1);
@@ -79,7 +89,6 @@ export default function NewsPage() {
       <div className="flex flex-col text-center mb-4">
         <Link href="/">Back</Link>
       </div>
-
       <div className="flex flex-col items-center gap-4 mb-6">
         <div className="flex flex-col md:flex-row items-center gap-4 w-full">
           <input
@@ -101,12 +110,12 @@ export default function NewsPage() {
             <option value="business">Business</option>
             <option value="culture">Culture</option>
           </select>
-          <input
+          {/*<input
             type="date"
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
             className="text-base w-full md:w-1/3 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+          />*/}
         </div>
         <div className="flex gap-4">
           <button

@@ -145,6 +145,7 @@ export default function NewsPage() {
             {article.fields?.thumbnail && (
               <div className="relative w-full h-48">
                 <Image
+                  unoptimized
                   src={article.fields.thumbnail}
                   alt={article.webTitle}
                   fill

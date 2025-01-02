@@ -85,6 +85,7 @@ export default function Home() {
             className="relative w-48 h-48"
           >
             <Image
+              unoptimized
               src={qrCodeUrl}
               alt="Generated QR Code"
               fill

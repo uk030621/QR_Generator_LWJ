@@ -104,6 +104,45 @@ export default function Home() {
       <Link href="/news" className="text-gray-700 mt-8">
         News
       </Link>
+      <Link href="/panel" className="text-gray-700 mt-4">
+        Panelling Calculator
+      </Link>
+      <Link
+        href="https://taskmanager-lwj.vercel.app/"
+        className="text-gray-700 mt-4"
+      >
+        Reminders
+      </Link>
+      <Link
+        href="https://basic-tax-calc-lwj.vercel.app/"
+        className="text-gray-700 mt-4"
+      >
+        Basic Tax - UK & NI
+      </Link>
+      <Link
+        href="https://media-lw-jauth.vercel.app/"
+        className="text-gray-700 mt-4"
+      >
+        Media Library
+      </Link>
+      <Link
+        href="https://stock-portfolio-manager-psi.vercel.app/"
+        className="text-gray-700 mt-4"
+      >
+        Stock Manager
+      </Link>
+      <Link
+        href="https://roller-kinnear.vercel.app/"
+        className="text-gray-700 mt-4"
+      >
+        Dice Roller
+      </Link>
+      <Link
+        href="https://uk030621.github.io/lwjwordle3987.io/"
+        className="text-gray-700 mt-4"
+      >
+        Wordle
+      </Link>
       <footer className="mt-8 text-xs">
         <div className="text-center">
           <p className="flex flex-col gap-1">

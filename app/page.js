@@ -101,45 +101,33 @@ export default function Home() {
           </a>
         </div>
       )}
-      <Link href="/news" className="text-gray-700 mt-8">
+      <Link href="/news" className="mt-8">
         News
       </Link>
-      <Link href="/panel" className="text-gray-700 mt-4">
+      <Link href="/panel" className="mt-4">
         Panelling Calculator
       </Link>
-      <Link
-        href="https://taskmanager-lwj.vercel.app/"
-        className="text-gray-700 mt-4"
-      >
+      <Link href="https://taskmanager-lwj.vercel.app/" className="mt-4">
         Reminders
       </Link>
-      <Link
-        href="https://basic-tax-calc-lwj.vercel.app/"
-        className="text-gray-700 mt-4"
-      >
+      <Link href="https://basic-tax-calc-lwj.vercel.app/" className="mt-4">
         Basic Tax - UK & NI
       </Link>
-      <Link
-        href="https://media-lw-jauth.vercel.app/"
-        className="text-gray-700 mt-4"
-      >
+      <Link href="https://media-lw-jauth.vercel.app/" className="mt-4">
         Media Library
       </Link>
       <Link
         href="https://stock-portfolio-manager-psi.vercel.app/"
-        className="text-gray-700 mt-4"
+        className="mt-4"
       >
         Stock Manager
       </Link>
-      <Link
-        href="https://roller-kinnear.vercel.app/"
-        className="text-gray-700 mt-4"
-      >
+      <Link href="https://roller-kinnear.vercel.app/" className="mt-4">
         Dice Roller
       </Link>
       <Link
         href="https://uk030621.github.io/lwjwordle3987.io/"
-        className="text-gray-700 mt-4"
+        className="mt-4"
       >
         Wordle
       </Link>

@@ -105,16 +105,16 @@ export default function SlatSpacingCalculator() {
 
   return (
     <div className="max-w-lg mx-auto text-left p-4">
-      <div className="text-right mr-5">
-        <Link className="text-center text-xl" href="/">
+      <div className="text-left mr-5">
+        <Link className=" text-xl" href="/">
           ⬅️
         </Link>
       </div>
-      <h2 className="text-xl text-center font-bold">
+      <h2 className="text-xl text-left font-bold">
         Tom&apos;s Slat Spacing Calculator
       </h2>
       <div className="bg-white p-5 rounded-lg shadow-md">
-        <label className="block text-gray-700">
+        <label className="block text-gray-700 text-sm">
           Span between inside edge of end slats (cm):
         </label>
         <input
@@ -124,7 +124,7 @@ export default function SlatSpacingCalculator() {
           className="w-full p-2 text-black border rounded mb-3"
         />
 
-        <label className="block text-gray-700">Number of Spaces:</label>
+        <label className="block text-gray-700 text-sm">Number of Spaces:</label>
         <input
           type="number"
           value={spaces}
@@ -132,7 +132,7 @@ export default function SlatSpacingCalculator() {
           className="w-full p-2 text-black border rounded mb-3"
         />
 
-        <label className="block text-gray-700">Slat Width (cm):</label>
+        <label className="block text-gray-700 text-sm">Slat Width (cm):</label>
         <input
           type="number"
           value={width}
@@ -142,23 +142,27 @@ export default function SlatSpacingCalculator() {
         <div className="flex gap-3">
           <button
             onClick={calculateSpacing}
-            className="flex-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="flex-1 bg-blue-500 text-white text-sm px-4 py-2 rounded hover:bg-blue-700"
           >
             Calculate
           </button>
           <button
             onClick={resetCalculator}
-            className="flex-1 bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-800"
+            className="flex-1 bg-gray-600 text-white text-sm px-4 py-2 rounded hover:bg-gray-800"
           >
             Reset
           </button>
         </div>
       </div>
 
-      <div className="mt-4 font-semibold text-white text-lg">{result}</div>
+      <div className="mt-2 text-left font-semibold text-black text-lg">
+        {result}
+      </div>
 
-      <div className="mt-6">
-        <h3 className="text-lg text-center font-semibold">Basic Sketch</h3>
+      <div className="mt-2">
+        <h3 className="text-lg text-slate-600 text-left font-semibold">
+          Basic Sketch
+        </h3>
         <canvas
           ref={canvasRef}
           className="border rounded w-full max-w-md bg-gray-100 mt-2"

@@ -155,7 +155,7 @@ export default function SlatSpacingCalculator() {
         </div>
       </div>
 
-      <div className="mt-2 text-left font-semibold text-black text-lg">
+      <div className="mt-2 text-left text-[#FF0000] font-semibold text-lg">
         {result}
       </div>
 

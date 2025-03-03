@@ -17,6 +17,45 @@ export default function Home() {
     }
   };
 
+  const downloadQrCode = async () => {
+    if (!qrCodeUrl) return;
+
+    try {
+      const response = await fetch(qrCodeUrl);
+      const blob = await response.blob();
+
+      if (window.showSaveFilePicker) {
+        // ✅ Use File System Access API if available (modern browsers)
+        const handle = await window.showSaveFilePicker({
+          suggestedName: "qrcode.png",
+          types: [
+            {
+              description: "PNG Image",
+              accept: { "image/png": [".png"] },
+            },
+          ],
+        });
+
+        const writable = await handle.createWritable();
+        await writable.write(blob);
+        await writable.close();
+      } else {
+        // ❌ Fallback for unsupported browsers (uses auto-download)
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "qrcode.png";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+    } catch (error) {
+      alert("Failed to download QR Code.");
+      console.error(error);
+    }
+  };
+
   const generateQrCode = async () => {
     if (!inputText) return alert("Please enter text to generate QR Code!");
 
@@ -92,13 +131,12 @@ export default function Home() {
               className="object-contain cursor-pointer"
             />
           </a>
-          <a
-            href={qrCodeUrl}
-            download="qrcode.png"
-            className="mt-4 text-blue-500 hover:underline"
+          <button
+            onClick={downloadQrCode}
+            className="mt-4 px-4 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition"
           >
             Download QR Code
-          </a>
+          </button>
         </div>
       )}
       <Link href="/news" className="mt-8">
